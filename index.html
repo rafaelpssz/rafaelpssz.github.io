@@ -45,6 +45,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .top nav a{text-decoration:none;color:var(--muted)}
 .top nav a:hover{color:var(--ink)}
 
+.top .right{display:flex;align-items:center;gap:24px}
+.lang{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:none;border:1px solid var(--line);border-radius:6px;padding:3px 9px;cursor:pointer}
+.lang:hover{border-color:var(--ink)}
 /* intro */
 .intro .wrap{padding-block:96px 80px}
 .intro h1{font-size:clamp(34px,4.6vw,56px);line-height:1.1;letter-spacing:-.035em;max-width:20ch}
@@ -122,7 +125,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
   .project{padding-bottom:72px}
   .top nav{gap:16px}
 }
-@media (max-width:420px){ .top nav a:not(:last-child){display:none} }
+@media (max-width:420px){ .top nav a:not(:last-child){display:none} .top .right{gap:14px} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -131,7 +134,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
 <header class="top">
   <div class="wrap">
     <a class="name" href="#topo">Rafael Passos</a>
-    <nav aria-label="Seções"><a href="#trabalhos">Trabalhos</a><a href="#processo">Processo</a><a href="#contato">Contato</a></nav>
+    <div class="right"><nav aria-label="Seções"><a href="#trabalhos">Trabalhos</a><a href="#processo">Processo</a><a href="#contato">Contato</a></nav><button class="lang" type="button" id="lang" aria-label="Read in English">EN</button></div>
   </div>
 </header>
 
@@ -175,7 +178,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
           </div>
           <dl class="meta">
             <div><dt>Tipo</dt><dd>Plataforma web</dd></div>
-            <div><dt>Ano</dt><dd>2026</dd></div>
+            <div><dt>Ano</dt><dd>Jun – set 2026</dd></div>
             <div><dt>Tecnologias</dt><dd>Next.js, TypeScript, Prisma, PostgreSQL, Vitest, GitHub Actions</dd></div>
           </dl>
         </div>
@@ -202,7 +205,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
           </div>
           <dl class="meta">
             <div><dt>Tipo</dt><dd>Loja e plugin de servidor</dd></div>
-            <div><dt>Ano</dt><dd>2026 – atual</dd></div>
+            <div><dt>Ano</dt><dd>Set 2026 – atual</dd></div>
             <div><dt>Tecnologias</dt><dd>Next.js, Redis, Docker, Mercado Pago, Java (Paper e Velocity), Three.js</dd></div>
           </dl>
         </div>
@@ -230,7 +233,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
           </div>
           <dl class="meta">
             <div><dt>Tipo</dt><dd>Site e painel administrativo</dd></div>
-            <div><dt>Ano</dt><dd>2025 – atual</dd></div>
+            <div><dt>Ano</dt><dd>Out 2025 – atual</dd></div>
             <div><dt>Tecnologias</dt><dd>Next.js, TypeScript, Supabase, Tiptap, GSAP</dd></div>
           </dl>
         </div>
@@ -256,7 +259,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
           </div>
           <dl class="meta">
             <div><dt>Tipo</dt><dd>Projeto pessoal, protótipo navegável</dd></div>
-            <div><dt>Ano</dt><dd>2026, em andamento</dd></div>
+            <div><dt>Ano</dt><dd>Out 2026 – atual</dd></div>
             <div><dt>Tecnologias</dt><dd>HTML, CSS, JavaScript</dd></div>
           </dl>
         </div>
@@ -336,10 +339,31 @@ document.querySelectorAll('.project').forEach(p=>{
 });
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
   const el=document.getElementById(b.dataset.copy), txt=el.textContent.trim();
-  const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1600)};
-  const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selecionado'};
+  const en=()=>document.documentElement.lang==='en';const done=()=>{b.textContent=en()?'Copied':'Copiado';setTimeout(()=>b.textContent=en()?'Copy':'Copiar',1600)};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent=en()?'Selected':'Selecionado'};
   try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
 }));
+
+/* language toggle: Portuguese is the page's own text; English comes from this table */
+(function(){
+  const EN={"Trabalhos": "Work", "Processo": "Process", "Contato": "Contact", "Desenvolvo produtos web completos usando IA, do banco de dados ao design.": "I build complete web products with AI, from the database to the design.", "Lojas com pagamento via PIX, painéis de gestão, integrações com jogos e um app desktop. Defino o escopo, divido o trabalho em etapas e reviso cada entrega com testes automatizados.": "Online stores with PIX payments, management dashboards, game integrations and a desktop app. I define the scope, split the work into steps and check every delivery with automated tests.", "Formação": "Education", "Engenharia de Software, FIAP, início em 2027": "Software Engineering, FIAP, starting 2027", "Idiomas": "Languages", "Português, inglês avançado": "Portuguese, advanced English", "Busco": "Looking for", "Estágio ou primeira vaga": "Internship or junior role", "Projetos": "Projects", "Início": "Home", "Painel da equipe": "Team dashboard", "Loja": "Store", "Ranking": "Leaderboard", "Login": "Login", "Painel de gestão e loja para um servidor de roleplay em FiveM.": "Management dashboard and store for a FiveM roleplay server.", "Suporte, demandas, recrutamento com entrevistas, contratos e relatórios da equipe num só lugar.": "Support, tasks, recruiting with interviews, contracts and team reports in one place.", "Loja com carrinho, cupons e PIX, livro-caixa, estorno e proteção contra cobrança duplicada.": "Store with cart, coupons and PIX payments, a transaction ledger, refunds and duplicate-charge protection.", "Login com 2FA, permissões por cargo, notificações em tempo real e integração com o jogo e o Discord.": "Two-factor login, role-based permissions, real-time notifications, and game and Discord integration.", "Tipo": "Type", "Plataforma web": "Web platform", "Ano": "Year", "Tecnologias": "Tech", "Jun – set 2026": "Jun – Sep 2026", "Produto": "Product", "Torneios": "Tournaments", "Painel admin": "Admin panel", "Site, loja e plugin para uma rede de servidores de Minecraft.": "Website, store and plugin for a Minecraft server network.", "O que o jogador compra no site chega sozinho dentro do jogo, por um plugin próprio em Java.": "What players buy on the website is delivered in-game automatically, through a custom Java plugin.", "Login pelo nick do jogo, status dos servidores ao vivo e pódio 3D na loja.": "Login with the in-game name, live server status and a 3D podium in the store.", "Afiliados com saque, pontos de fidelidade, torneios com chaveamento e painel de vendas.": "Affiliates with payouts, loyalty points, bracket tournaments and a sales dashboard.", "Loja e plugin de servidor": "Store and server plugin", "Set 2026 – atual": "Sep 2026 – present", "Next.js, Redis, Docker, Mercado Pago, Java (Paper e Velocity), Three.js": "Next.js, Redis, Docker, Mercado Pago, Java (Paper and Velocity), Three.js", "Painel": "Dashboard", "Páginas de coleção": "Collection pages", "Editor de posts": "Post editor", "Formulários": "Forms", "Manutenção": "Maintenance", "Site e painel administrativo de uma marca de moda virtual.": "Website and admin panel for a virtual fashion brand.", "Painel para a equipe editar a home, as coleções, os influenciadores, os posts e o menu do site.": "Admin panel where the team edits the home page, collections, influencers, posts and site menu.", "Construtor de formulários com backup criptografado. O processo seletivo de influenciadores recebeu 198 inscrições por ele.": "Form builder with encrypted backups. The influencer recruitment process received 198 applications through it.", "Modo de manutenção com contador e reabertura automática no horário marcado.": "Maintenance mode with a countdown that reopens the site automatically at the set time.", "Site em português, inglês e espanhol, no ar em <a href=\"https://vipercouture.com.br\" target=\"_blank\" rel=\"noopener\">vipercouture.com.br</a>.": "Site in Portuguese, English and Spanish, live at <a href=\"https://vipercouture.com.br\" target=\"_blank\" rel=\"noopener\">vipercouture.com.br</a>.", "Site e painel administrativo": "Website and admin panel", "Out 2025 – atual": "Oct 2025 – present", "Solicitações": "Requests", "Calendário": "Calendar", "Recrutamento": "Recruiting", "Equipe": "Team", "NoxGG, painel v2": "NoxGG, dashboard v2", "Projeto pessoal: redesenho por conta própria do painel da NoxGG, sem ligação com a versão entregue. Ainda em desenvolvimento.": "Personal project: an independent redesign of the NoxGG dashboard, separate from the delivered version. Still in progress.", "Início com status do servidor, solicitações em quadro, calendário, recrutamento em etapas e equipe.": "Home with server status, requests board, calendar, staged recruiting and team.", "Versões para computador e celular, testadas com grande volume de dados.": "Desktop and mobile layouts, tested with large amounts of data.", "Projeto pessoal, protótipo navegável": "Personal project, clickable prototype", "Out 2026 – atual": "Oct 2026 – present", "Administração": "Admin", "Plugins": "Plugins", "Agenda": "Schedule", "Pagamentos": "Payments", "App para Windows que controla o acesso de uma equipe ao Claude e às ferramentas de IA do estúdio.": "Windows app that manages a team's access to Claude and the studio's AI tools.", "O administrador cria contas, define limites de uso e bloqueia acessos. Cada pessoa vê o próprio consumo na tela inicial.": "The admin creates accounts, sets usage limits and blocks access. Each person sees their own usage on the home screen.", "Catálogo de skills e plugins do Claude Code que os membros instalam com um clique.": "Catalog of Claude Code skills and plugins that members install with one click.", "Agenda compartilhada e aprovação de pagamentos dentro do app.": "Shared schedule and payment approval inside the app.", "67 testes automatizados e revisão de segurança antes de gerar o instalador.": "67 automated tests and a security review before building the installer.", "App desktop": "Desktop app", "Automação 3D em Python": "3D automation in Python", "Cenas e poses de personagens no Blender geradas por script, com checagem automática de colisões antes da entrega.": "Blender scenes and character poses generated by script, with automatic collision checks before delivery.", "Identidade visual AntiProject": "AntiProject visual identity", "Marca, paleta de cores, animação do logo e modelos de posts para um estúdio de cenários 3D.": "Brand, color palette, logo animation and post templates for a 3D environment studio.", "Como trabalho": "How I work", "Escopo antes do código": "Scope before code", "Defino o que o sistema precisa fazer, divido em etapas pequenas e só avanço quando a etapa anterior está funcionando.": "I define what the system needs to do, split it into small steps and only move on when the previous step works.", "Revisão independente": "Independent review", "Um agente propõe e outro revisa. Nenhuma mudança entra sem testes automatizados e checagem de segurança.": "One agent proposes and another reviews. No change goes in without automated tests and a security check.", "Erros viram regras": "Mistakes become rules", "Cada problema corrigido é registrado como regra escrita e reaproveitado no projeto seguinte.": "Every fixed problem is written down as a rule and reused in the next project.", "Procuro estágio ou primeira vaga, remoto ou híbrido.": "Looking for an internship or junior developer role, remote or hybrid.", "Copiar": "Copy"};
+  const sel='.top nav a,h1,h2,h3,p,li,dt,dd,.views button,.copy';
+  const els=[...document.querySelectorAll(sel)].filter(e=>Object.prototype.hasOwnProperty.call(EN,e.innerHTML.trim()));
+  els.forEach(e=>e.dataset.pt=e.innerHTML.trim());
+  const btn=document.getElementById('lang');
+  const apply=l=>{
+    els.forEach(e=>{e.innerHTML=l==='en'?EN[e.dataset.pt]:e.dataset.pt});
+    document.documentElement.lang=l==='en'?'en':'pt-BR';
+    btn.textContent=l==='en'?'PT':'EN';
+    btn.setAttribute('aria-label',l==='en'?'Ler em português':'Read in English');
+    try{localStorage.setItem('lang',l)}catch(e){}
+  };
+  let l=new URLSearchParams(location.search).get('lang');
+  if(l!=='en'&&l!=='pt'){try{l=localStorage.getItem('lang')}catch(e){l=null}}
+  if(l!=='en'&&l!=='pt') l=(navigator.language||'pt').toLowerCase().startsWith('pt')?'pt':'en';
+  if(l==='en') apply('en');
+  btn.addEventListener('click',()=>apply(document.documentElement.lang==='en'?'pt':'en'));
+})();
 </script>
 
 </body>
