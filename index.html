@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Portfólio de Rafael Passos: produtos web completos feitos com IA, do banco de dados ao design.">
+<title>Rafael Passos · Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
+<style>
+/* Layout: quiet case-study portfolio. Large real screenshots carry the page; type, spacing and thin rules do the rest.
+   One sans family, warm-neutral paper, ink text, a single deep green used only for interaction. */
+:root{
+  --bg:#f5f4f1; --surface:#fbfaf8; --ink:#141413; --body:#45443f; --muted:#7a786f;
+  --line:#e2e0da; --accent:#1f5f4a; --frame:#e9e7e1;
+  --f:"Geist","Helvetica Neue",Arial,system-ui,sans-serif;
+  --wrap:1120px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121211; --surface:#181816; --ink:#f0eee9; --body:#bebcb4; --muted:#87857d;
+  --line:#2a2926; --accent:#7cc4a6; --frame:#1e1e1b; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#121211; --surface:#181816; --ink:#f0eee9; --body:#bebcb4; --muted:#87857d;
+  --line:#2a2926; --accent:#7cc4a6; --frame:#1e1e1b; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--f);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;transition:text-decoration-color .2s,color .2s}
+a:hover{color:var(--accent);text-decoration-color:currentColor}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{color:var(--ink);margin:0;font-weight:500;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.label{font-size:13px;color:var(--muted)}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:18px;font-size:14px}
+.top .name{font-weight:500;color:var(--ink);text-decoration:none}
+.top nav{display:flex;gap:24px}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--ink)}
+
+/* intro */
+.intro .wrap{padding-block:96px 80px}
+.intro h1{font-size:clamp(34px,4.6vw,56px);line-height:1.1;letter-spacing:-.035em;max-width:20ch}
+.intro .lede{margin-top:28px;font-size:clamp(17px,1.5vw,19px);max-width:56ch}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
+.facts div{min-width:0}
+.facts dt{font-size:13px;color:var(--muted)}
+.facts dd{margin:4px 0 0;color:var(--ink);font-size:15px}
+
+/* work */
+.work{border-top:1px solid var(--line)}
+.work .wrap{padding-block:80px 40px}
+.sec-title{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.sec-title h2{font-size:clamp(24px,2.4vw,30px)}
+.sec-title p{color:var(--muted);max-width:48ch;font-size:15px}
+
+.project{padding-bottom:96px}
+.shot{background:var(--frame);border-radius:10px;overflow:hidden;border:1px solid var(--line)}
+.screens{position:relative;aspect-ratio:16/10;max-width:100%;overflow:hidden;background:var(--frame)}
+.screens img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity .45s ease}
+.screens img.on{opacity:1}
+.views{display:flex;flex-wrap:wrap;gap:4px 18px;margin-top:14px}
+.views button{font:inherit;font-size:14px;color:var(--muted);background:none;border:0;padding:4px 0;cursor:pointer;border-bottom:1px solid transparent}
+.views button:hover{color:var(--ink)}
+.views button[aria-pressed="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+
+.detail{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;margin-top:40px}
+.detail h3{font-size:clamp(24px,2.6vw,32px);letter-spacing:-.03em}
+.detail .what{margin-top:10px;font-size:18px;color:var(--ink);max-width:40ch}
+.detail ul{margin:22px 0 0;padding:0 0 0 18px;display:grid;gap:8px}
+.detail li::marker{color:var(--muted)}
+.meta{display:grid;gap:18px;align-content:start;padding-top:6px}
+.meta div{display:grid;grid-template-columns:96px minmax(0,1fr);gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.meta dt{font-size:13px;color:var(--muted);padding-top:2px}
+.meta dd{margin:0;color:var(--ink);font-size:15px}
+
+/* AntiProject: no screenshot, a plain rendering of the usage screen */
+.screens.short{aspect-ratio:16/7}
+.screens.wide{aspect-ratio:1440/732}
+.usage{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:28px;padding:6% 12%;background:var(--surface)}
+.usage .lbl{display:flex;justify-content:space-between;font-size:15px;color:var(--ink);margin-bottom:10px;font-variant-numeric:tabular-nums}
+.usage .trk{height:8px;border-radius:999px;background:var(--line);overflow:hidden}
+.usage .fill{height:100%;width:var(--w);background:var(--accent);border-radius:999px}
+.usage small{display:block;margin-top:8px;font-size:13px;color:var(--muted)}
+.usage .note{position:absolute;left:12%;bottom:6%;font-size:12px;color:var(--muted)}
+
+.other{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px;padding-top:40px;border-top:1px solid var(--line)}
+.other h3{font-size:19px;margin-bottom:8px}
+
+/* method */
+.method{border-top:1px solid var(--line)}
+.method .wrap{padding-block:80px}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px}
+.cols h3{font-size:18px;margin-bottom:10px}
+.cols p{font-size:15.5px}
+
+/* contact */
+.contact{border-top:1px solid var(--line)}
+.contact .wrap{padding-block:96px 72px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:56px;align-items:end}
+.contact h2{font-size:clamp(30px,3.8vw,46px);line-height:1.12;letter-spacing:-.035em;max-width:16ch}
+.contact .lede{margin-top:20px;max-width:46ch}
+.links{display:grid;gap:0}
+.links div{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:16px;align-items:center;padding-block:16px;border-bottom:1px solid var(--line)}
+.links div:first-child{border-top:1px solid var(--line)}
+.links dt{font-size:13px;color:var(--muted)}
+.links dd{margin:0;color:var(--ink);overflow-wrap:anywhere}
+.copy{font:inherit;font-size:13px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+.copy:hover{color:var(--ink);border-color:var(--ink)}
+footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
+
+@media (max-width:860px){
+  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .detail,.other,.cols,.contact .wrap{grid-template-columns:1fr;gap:32px}
+  .intro .wrap{padding-block:56px 56px}
+  .project{padding-bottom:72px}
+  .top nav{gap:16px}
+}
+@media (max-width:420px){ .top nav a:not(:last-child){display:none} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="name" href="#topo">Rafael Passos</a>
+    <nav aria-label="Seções"><a href="#trabalhos">Trabalhos</a><a href="#processo">Processo</a><a href="#contato">Contato</a></nav>
+  </div>
+</header>
+
+<main id="topo">
+  <section class="intro">
+    <div class="wrap">
+      <h1>Desenvolvo produtos web completos usando IA, do banco de dados ao design.</h1>
+      <p class="lede">Lojas com pagamento via PIX, painéis de gestão, integrações com jogos e um app desktop, feitos para comunidades de games e marcas. Eu defino o escopo, divido o trabalho em etapas e reviso cada entrega com testes automatizados.</p>
+      <dl class="facts">
+        <div><dt>Base</dt><dd>Cataguases, MG</dd></div>
+        <div><dt>Formação</dt><dd>Engenharia de Software, FIAP, início em 2027</dd></div>
+        <div><dt>Idiomas</dt><dd>Português, inglês avançado</dd></div>
+        <div><dt>Busco</dt><dd>Estágio ou primeira vaga</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="work" id="trabalhos">
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>Trabalhos selecionados</h2>
+        <p>Capturas dos sistemas em funcionamento. Alguns painéis aparecem com dados de exemplo.</p>
+      </div>
+
+      <article class="project">
+        <div class="shot"><div class="screens">
+          <img src="img/nox-landing.webp" alt="NoxGG, página inicial" class="on" decoding="async">
+          <img src="img/nox-dashboard.webp" alt="NoxGG, painel da equipe" loading="lazy" decoding="async">
+          <img src="img/nox-loja.webp" alt="NoxGG, loja" loading="lazy" decoding="async">
+          <img src="img/nox-leaderboard.webp" alt="NoxGG, ranking" loading="lazy" decoding="async">
+          <img src="img/nox-login.webp" alt="NoxGG, login" loading="lazy" decoding="async">
+        </div></div>
+        <div class="views" role="group" aria-label="Telas do NoxGG"><button type="button" aria-pressed="true">Início</button><button type="button" aria-pressed="false">Painel da equipe</button><button type="button" aria-pressed="false">Loja</button><button type="button" aria-pressed="false">Ranking</button><button type="button" aria-pressed="false">Login</button></div>
+        <div class="detail">
+          <div>
+            <h3>NoxGG</h3>
+            <p class="what">Painel de gestão e loja para um servidor de roleplay em FiveM.</p>
+            <ul>
+              <li>Centraliza a operação da equipe: suporte, demandas, recrutamento com entrevistas, contratos e relatórios.</li>
+              <li>Loja com carrinho, cupons e PIX, livro-caixa, estorno e proteção contra cobrança duplicada.</li>
+              <li>Login com 2FA, permissões por cargo, notificações em tempo real e integração com o jogo e o Discord.</li>
+            </ul>
+          </div>
+          <dl class="meta">
+            <div><dt>Tipo</dt><dd>Plataforma web</dd></div>
+            <div><dt>Ano</dt><dd>2026</dd></div>
+            <div><dt>Tecnologias</dt><dd>Next.js, TypeScript, Prisma, PostgreSQL, Vitest, GitHub Actions</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot"><div class="screens">
+          <img src="img/fury-home.webp" alt="Fury, página inicial" class="on" loading="lazy" decoding="async">
+          <img src="img/fury-loja.webp" alt="Fury, loja" loading="lazy" decoding="async">
+          <img src="img/fury-produto.webp" alt="Fury, página de produto" loading="lazy" decoding="async">
+          <img src="img/fury-torneio.webp" alt="Fury, torneios" loading="lazy" decoding="async">
+          <img src="img/fury-admin.webp" alt="Fury, painel administrativo" loading="lazy" decoding="async">
+        </div></div>
+        <div class="views" role="group" aria-label="Telas do Fury"><button type="button" aria-pressed="true">Início</button><button type="button" aria-pressed="false">Loja</button><button type="button" aria-pressed="false">Produto</button><button type="button" aria-pressed="false">Torneios</button><button type="button" aria-pressed="false">Painel admin</button></div>
+        <div class="detail">
+          <div>
+            <h3>Fury</h3>
+            <p class="what">Site, loja e plugin para uma rede de servidores de Minecraft.</p>
+            <ul>
+              <li>O que o jogador compra no site chega sozinho dentro do jogo, por um plugin próprio em Java.</li>
+              <li>Login pelo nick do jogo, status dos servidores ao vivo e pódio 3D na loja.</li>
+              <li>Afiliados com saque, pontos de fidelidade, torneios com chaveamento e painel de vendas.</li>
+            </ul>
+          </div>
+          <dl class="meta">
+            <div><dt>Tipo</dt><dd>Loja e plugin de servidor</dd></div>
+            <div><dt>Ano</dt><dd>2026</dd></div>
+            <div><dt>Tecnologias</dt><dd>Next.js, Redis, Docker, Mercado Pago, Java (Paper e Velocity), Three.js</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot"><div class="screens wide">
+          <img src="img/viper-dashboard.webp" alt="Viper Couture, painel com respostas de formulários e conteúdo publicado" class="on" loading="lazy" decoding="async">
+          <img src="img/viper-colecao.webp" alt="Viper Couture, criação de página de coleção" loading="lazy" decoding="async">
+          <img src="img/viper-post.webp" alt="Viper Couture, editor de posts" loading="lazy" decoding="async">
+          <img src="img/viper-formularios.webp" alt="Viper Couture, gestão de formulários" loading="lazy" decoding="async">
+          <img src="img/viper-manutencao.webp" alt="Viper Couture, modo de manutenção com data de retorno" loading="lazy" decoding="async">
+        </div></div>
+        <div class="views" role="group" aria-label="Telas da Viper Couture"><button type="button" aria-pressed="true">Painel</button><button type="button" aria-pressed="false">Páginas de coleção</button><button type="button" aria-pressed="false">Editor de posts</button><button type="button" aria-pressed="false">Formulários</button><button type="button" aria-pressed="false">Manutenção</button></div>
+        <div class="detail">
+          <div>
+            <h3>Viper Couture</h3>
+            <p class="what">Site e painel administrativo de uma marca de moda virtual. Fiz a estrutura, o design e o desenvolvimento.</p>
+            <ul>
+              <li>Painel próprio para a equipe editar a vitrine inteira sem mexer em código: destaques da home, páginas de coleção, influenciadores, posts e menu.</li>
+              <li>Construtor de formulários com backup criptografado, usado no processo seletivo de influenciadores, que recebeu 198 inscrições.</li>
+              <li>Modo de manutenção com contador e reabertura automática no horário marcado.</li>
+              <li>Site em português, inglês e espanhol, no ar em <a href="https://vipercouture.com.br" target="_blank" rel="noopener">vipercouture.com.br</a>.</li>
+            </ul>
+          </div>
+          <dl class="meta">
+            <div><dt>Tipo</dt><dd>Site e painel administrativo</dd></div>
+            <div><dt>Ano</dt><dd>2026</dd></div>
+            <div><dt>Tecnologias</dt><dd>Next.js, TypeScript, Supabase, Tiptap, GSAP</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot"><div class="screens">
+          <img src="img/nox2-home.webp" alt="NoxGG v2, início" class="on" loading="lazy" decoding="async">
+          <img src="img/nox2-solicitacoes.webp" alt="NoxGG v2, solicitações" loading="lazy" decoding="async">
+          <img src="img/nox2-calendario.webp" alt="NoxGG v2, calendário" loading="lazy" decoding="async">
+          <img src="img/nox2-recrutamento.webp" alt="NoxGG v2, recrutamento" loading="lazy" decoding="async">
+          <img src="img/nox2-equipe.webp" alt="NoxGG v2, equipe" loading="lazy" decoding="async">
+        </div></div>
+        <div class="views" role="group" aria-label="Telas do NoxGG v2"><button type="button" aria-pressed="true">Início</button><button type="button" aria-pressed="false">Solicitações</button><button type="button" aria-pressed="false">Calendário</button><button type="button" aria-pressed="false">Recrutamento</button><button type="button" aria-pressed="false">Equipe</button></div>
+        <div class="detail">
+          <div>
+            <h3>NoxGG, painel v2</h3>
+            <p class="what">Redesenho do painel da equipe. O visual e os fluxos estão prontos; a ligação com o sistema está em andamento.</p>
+            <ul>
+              <li>Início com status do servidor, solicitações em quadro, calendário, recrutamento em etapas e equipe.</li>
+              <li>Versões para computador e celular, testadas com grande volume de dados.</li>
+            </ul>
+          </div>
+          <dl class="meta">
+            <div><dt>Tipo</dt><dd>Protótipo navegável</dd></div>
+            <div><dt>Ano</dt><dd>2026, em andamento</dd></div>
+            <div><dt>Tecnologias</dt><dd>HTML, CSS, JavaScript</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot"><div class="screens">
+          <img src="img/ap-explorar.webp" alt="AntiProject, tela inicial com uso de IA e catálogo de skills" class="on" loading="lazy" decoding="async">
+          <img src="img/ap-admin.webp" alt="AntiProject, administração de contas e limites de uso" loading="lazy" decoding="async">
+          <img src="img/ap-plugins.webp" alt="AntiProject, catálogo de plugins do Claude Code" loading="lazy" decoding="async">
+          <img src="img/ap-agenda.webp" alt="AntiProject, agenda compartilhada da equipe" loading="lazy" decoding="async">
+          <img src="img/ap-pagamentos.webp" alt="AntiProject, aprovação de pagamentos" loading="lazy" decoding="async">
+        </div></div>
+        <div class="views" role="group" aria-label="Telas do AntiProject"><button type="button" aria-pressed="true">Início</button><button type="button" aria-pressed="false">Administração</button><button type="button" aria-pressed="false">Plugins</button><button type="button" aria-pressed="false">Agenda</button><button type="button" aria-pressed="false">Pagamentos</button></div>
+        <div class="detail">
+          <div>
+            <h3>AntiProject</h3>
+            <p class="what">App para Windows que dá a uma equipe acesso controlado ao Claude e às ferramentas de IA do estúdio.</p>
+            <ul>
+              <li>O administrador cria as contas, define os limites de uso e bloqueia o acesso quando precisa; cada pessoa vê o próprio consumo na tela inicial.</li>
+              <li>Catálogo de skills e plugins do Claude Code que os membros instalam com um clique.</li>
+              <li>Agenda compartilhada e aprovação de pagamentos dentro do app.</li>
+              <li>67 testes automatizados e revisão de segurança antes de gerar o instalador.</li>
+            </ul>
+          </div>
+          <dl class="meta">
+            <div><dt>Tipo</dt><dd>App desktop</dd></div>
+            <div><dt>Ano</dt><dd>2026</dd></div>
+            <div><dt>Tecnologias</dt><dd>Electron, Node.js, Supabase, Claude Code</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <div class="other">
+        <div><h3>Automação 3D em Python</h3><p>Cenas e poses de personagens no Blender geradas por script, com checagem automática de colisões antes da entrega.</p></div>
+        <div><h3>Identidade visual AntiProject</h3><p>Marca, paleta de cores, animação do logo e modelos de posts para um estúdio de cenários 3D.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="method" id="processo">
+    <div class="wrap">
+      <div class="sec-title">
+        <h2>Como trabalho</h2>
+        <p>Uso o Claude Code como ferramenta principal. O que garante a qualidade é o processo em volta dele.</p>
+      </div>
+      <div class="cols">
+        <div><h3>Escopo antes do código</h3><p>Defino o que o sistema precisa fazer, divido em etapas pequenas e só avanço quando a etapa anterior está funcionando.</p></div>
+        <div><h3>Revisão independente</h3><p>Um agente propõe e outro revisa. Nenhuma mudança entra sem testes automatizados e checagem de segurança.</p></div>
+        <div><h3>Erros viram regras</h3><p>Cada problema corrigido é registrado como regra escrita e reaproveitado no projeto seguinte.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="wrap">
+      <div>
+        <h2>Disponível para estágio e primeira vaga.</h2>
+        <p class="lede">Começo Engenharia de Software na FIAP em 2027. Trabalho remoto ou híbrido.</p>
+      </div>
+      <dl class="links">
+        <div><dt>E-mail</dt><dd id="mail">rafaelalvesp2005@gmail.com</dd><button class="copy" type="button" data-copy="mail">Copiar</button></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/rafaelpssz" target="_blank" rel="noopener">github.com/rafaelpssz</a></dd><span></span></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>Rafael Passos</span><span>Cataguases, MG · 2026</span></div></footer>
+
+<script>
+document.querySelectorAll('.project').forEach(p=>{
+  const imgs=[...p.querySelectorAll('.screens img')], btns=[...p.querySelectorAll('.views button')];
+  btns.forEach((b,k)=>b.addEventListener('click',()=>{
+    imgs.forEach((im,j)=>im.classList.toggle('on',j===k));
+    btns.forEach((x,j)=>x.setAttribute('aria-pressed',j===k));
+  }));
+});
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',()=>{
+  const el=document.getElementById(b.dataset.copy), txt=el.textContent.trim();
+  const done=()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar',1600)};
+  const fallback=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selecionado'};
+  try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+}));
+</script>
+
+</body>
+</html>
