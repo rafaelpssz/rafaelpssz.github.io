@@ -49,7 +49,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .intro .wrap{padding-block:96px 80px}
 .intro h1{font-size:clamp(34px,4.6vw,56px);line-height:1.1;letter-spacing:-.035em;max-width:20ch}
 .intro .lede{margin-top:28px;font-size:clamp(17px,1.5vw,19px);max-width:56ch}
-.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
 .facts div{min-width:0}
 .facts dt{font-size:13px;color:var(--muted)}
 .facts dd{margin:4px 0 0;color:var(--ink);font-size:15px}
@@ -116,7 +116,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);border-top:1px solid var(--line)}
 
 @media (max-width:860px){
-  .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .facts{grid-template-columns:1fr}
   .detail,.other,.cols,.contact .wrap{grid-template-columns:1fr;gap:32px}
   .intro .wrap{padding-block:56px 56px}
   .project{padding-bottom:72px}
@@ -139,9 +139,8 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
   <section class="intro">
     <div class="wrap">
       <h1>Desenvolvo produtos web completos usando IA, do banco de dados ao design.</h1>
-      <p class="lede">Lojas com pagamento via PIX, painéis de gestão, integrações com jogos e um app desktop, feitos para comunidades de games e marcas. Eu defino o escopo, divido o trabalho em etapas e reviso cada entrega com testes automatizados.</p>
+      <p class="lede">Lojas com pagamento via PIX, painéis de gestão, integrações com jogos e um app desktop. Defino o escopo, divido o trabalho em etapas e reviso cada entrega com testes automatizados.</p>
       <dl class="facts">
-        <div><dt>Base</dt><dd>Cataguases, MG</dd></div>
         <div><dt>Formação</dt><dd>Engenharia de Software, FIAP, início em 2027</dd></div>
         <div><dt>Idiomas</dt><dd>Português, inglês avançado</dd></div>
         <div><dt>Busco</dt><dd>Estágio ou primeira vaga</dd></div>
@@ -152,8 +151,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
   <section class="work" id="trabalhos">
     <div class="wrap">
       <div class="sec-title">
-        <h2>Trabalhos selecionados</h2>
-        <p>Capturas dos sistemas em funcionamento. Alguns painéis aparecem com dados de exemplo.</p>
+        <h2>Projetos</h2>
       </div>
 
       <article class="project">
@@ -170,7 +168,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
             <h3>NoxGG</h3>
             <p class="what">Painel de gestão e loja para um servidor de roleplay em FiveM.</p>
             <ul>
-              <li>Centraliza a operação da equipe: suporte, demandas, recrutamento com entrevistas, contratos e relatórios.</li>
+              <li>Suporte, demandas, recrutamento com entrevistas, contratos e relatórios da equipe num só lugar.</li>
               <li>Loja com carrinho, cupons e PIX, livro-caixa, estorno e proteção contra cobrança duplicada.</li>
               <li>Login com 2FA, permissões por cargo, notificações em tempo real e integração com o jogo e o Discord.</li>
             </ul>
@@ -222,10 +220,10 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
         <div class="detail">
           <div>
             <h3>Viper Couture</h3>
-            <p class="what">Site e painel administrativo de uma marca de moda virtual. Fiz a estrutura, o design e o desenvolvimento.</p>
+            <p class="what">Site e painel administrativo de uma marca de moda virtual.</p>
             <ul>
-              <li>Painel próprio para a equipe editar a vitrine inteira sem mexer em código: destaques da home, páginas de coleção, influenciadores, posts e menu.</li>
-              <li>Construtor de formulários com backup criptografado, usado no processo seletivo de influenciadores, que recebeu 198 inscrições.</li>
+              <li>Painel para a equipe editar a home, as coleções, os influenciadores, os posts e o menu do site.</li>
+              <li>Construtor de formulários com backup criptografado. O processo seletivo de influenciadores recebeu 198 inscrições por ele.</li>
               <li>Modo de manutenção com contador e reabertura automática no horário marcado.</li>
               <li>Site em português, inglês e espanhol, no ar em <a href="https://vipercouture.com.br" target="_blank" rel="noopener">vipercouture.com.br</a>.</li>
             </ul>
@@ -250,7 +248,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
         <div class="detail">
           <div>
             <h3>NoxGG, painel v2</h3>
-            <p class="what">Redesenho do painel da equipe. O visual e os fluxos estão prontos; a ligação com o sistema está em andamento.</p>
+            <p class="what">Redesenho do painel da equipe, ainda em desenvolvimento.</p>
             <ul>
               <li>Início com status do servidor, solicitações em quadro, calendário, recrutamento em etapas e equipe.</li>
               <li>Versões para computador e celular, testadas com grande volume de dados.</li>
@@ -276,9 +274,9 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
         <div class="detail">
           <div>
             <h3>AntiProject</h3>
-            <p class="what">App para Windows que dá a uma equipe acesso controlado ao Claude e às ferramentas de IA do estúdio.</p>
+            <p class="what">App para Windows que controla o acesso de uma equipe ao Claude e às ferramentas de IA do estúdio.</p>
             <ul>
-              <li>O administrador cria as contas, define os limites de uso e bloqueia o acesso quando precisa; cada pessoa vê o próprio consumo na tela inicial.</li>
+              <li>O administrador cria contas, define limites de uso e bloqueia acessos. Cada pessoa vê o próprio consumo na tela inicial.</li>
               <li>Catálogo de skills e plugins do Claude Code que os membros instalam com um clique.</li>
               <li>Agenda compartilhada e aprovação de pagamentos dentro do app.</li>
               <li>67 testes automatizados e revisão de segurança antes de gerar o instalador.</li>
@@ -303,7 +301,6 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
     <div class="wrap">
       <div class="sec-title">
         <h2>Como trabalho</h2>
-        <p>Uso o Claude Code como ferramenta principal. O que garante a qualidade é o processo em volta dele.</p>
       </div>
       <div class="cols">
         <div><h3>Escopo antes do código</h3><p>Defino o que o sistema precisa fazer, divido em etapas pequenas e só avanço quando a etapa anterior está funcionando.</p></div>
@@ -316,8 +313,8 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
   <section class="contact" id="contato">
     <div class="wrap">
       <div>
-        <h2>Disponível para estágio e primeira vaga.</h2>
-        <p class="lede">Começo Engenharia de Software na FIAP em 2027. Trabalho remoto ou híbrido.</p>
+        <h2>Contato</h2>
+        <p class="lede">Procuro estágio ou primeira vaga, remoto ou híbrido.</p>
       </div>
       <dl class="links">
         <div><dt>E-mail</dt><dd id="mail">rafaelalvesp2005@gmail.com</dd><button class="copy" type="button" data-copy="mail">Copiar</button></div>
@@ -327,7 +324,7 @@ footer .wrap{padding-block:28px;display:flex;justify-content:space-between;gap:1
   </section>
 </main>
 
-<footer><div class="wrap"><span>Rafael Passos</span><span>Cataguases, MG · 2026</span></div></footer>
+<footer><div class="wrap"><span>Rafael Passos</span><span>2026</span></div></footer>
 
 <script>
 document.querySelectorAll('.project').forEach(p=>{
